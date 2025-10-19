@@ -36,7 +36,6 @@ exports.createReport = async (req, res) => {
       report: newReport,
     });
   } catch (error) {
-    console.error('Error creating report:', error);
     res.status(500).json({ message: 'Error creating report', error });
   }
 };
@@ -46,7 +45,6 @@ exports.getAllReports = async (req, res) => {
     const reports = await Report.find().sort({ uploadedAt: -1 }); // latest first
     res.status(200).json(reports);
   } catch (error) {
-    console.error('Error fetching reports:', error);
     res.status(500).json({ message: 'Error fetching reports', error });
   }
 };
