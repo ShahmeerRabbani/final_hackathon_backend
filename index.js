@@ -9,7 +9,16 @@ connectDB()
 const app = express()
 const PORT = 5000 || process.env.PORT
 app.use(express.json())
-app.use(cors())
+app.use(
+  cors({
+    origin: ['http://localhost:5173', 'https://final-hackathon-one-beta.vercel.app'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true, // if you’re using cookies or tokens
+  })
+);
+
+// ✅ Handle preflight requests explicitly
+app.options('*', cors());
 
 app.use("/", userRoutes)
 
