@@ -23,7 +23,6 @@ app.use(
 
 
 // ✅ Handle preflight requests explicitly
-app.options('(.*)', cors());
 
 app.use("/", userRoutes)
 
