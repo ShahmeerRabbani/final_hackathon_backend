@@ -11,14 +11,19 @@ const PORT = 5000 || process.env.PORT
 app.use(express.json())
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'https://final-hackathon-one-beta.vercel.app'],
+    origin: [
+      'http://localhost:5173', // for local development
+      'https://final-hackathon-one-beta.vercel.app', // your deployed frontend
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    credentials: true, // if you’re using cookies or tokens
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true, // if you use cookies or authentication
   })
 );
 
+
 // ✅ Handle preflight requests explicitly
-app.options('*', cors());
+app.options('(.*)', cors());
 
 app.use("/", userRoutes)
 
